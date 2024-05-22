@@ -42,27 +42,31 @@ class Taquin(QWidget):
         self.liste_cpy = self.liste.copy() # copy of the ordered list to be compared later, finish condition
         self.liste.append(0) #pour avoir lmes 16 valeurs  # to get the 16th value, the free cell
         
-        random.shuffle(self.liste_cpy)
-        self.liste_cpy.append(0)
-        print(self.liste)
-        print(self.liste_cpy)
+        random.shuffle(self.liste_cpy) # randomizing the list, =images
+        self.liste_cpy.append(0) # empty cell at the bottom right corner
+        # print(self.liste)
+        # print(self.liste_cpy)
         
-        self.keyboard.display_grid(self.liste_cpy)
+        self.keyboard.display_grid(self.liste_cpy) # display the grid
 
-        pygame.init()#jouer de la musique
+        pygame.init()#jouer de la musique # play the music
 
     def redemarre(self):
-        self.liste_cpy.pop(self.get_zero_index())
-        random.shuffle(self.liste_cpy) #on remelange
-        self.label_time.setText("") #on remet le label du timer à vide
-        self.current_time = 0 #le compteur on le remet a 0
+        self.liste_cpy.pop(self.get_zero_index()) # removing zero
+        random.shuffle(self.liste_cpy) #on remelange # shuffle
+        self.label_time.setText("") #on remet le label du timer à vide # reset the timer
+        self.current_time = 0 #le compteur on le remet a 0 # setting it at zero
         self.is_good()
         self.keyboard.display_grid(self.liste_cpy)
-        self.liste_cpy.append(0)
+        self.liste_cpy.append(0) # placing the empty cell
         self.timer.start()
 
     def is_good(self):
-        if(self.liste_cpy == self.liste): #on compare la liste à celle ordonnée pour verifier si le jeu est fini
+        """
+
+        :return: Bool
+        """
+        if(self.liste_cpy == self.liste): #on compare la liste à celle ordonnée pour verifier si le jeu est fini # compaaring the actual list to the finished state list
             self.label_gagne.setText("!!! YOUPLI DA PLIDOU C'EST GAGNÉ !!!")
             self.label_gagne.setStyleSheet("color : purple; font-size:18px")
             self.timer.stop()
@@ -74,6 +78,11 @@ class Taquin(QWidget):
 
     #fonction de déplacments
     def keyPressEvent(self, event: QtGui.QKeyEvent) -> None:
+        """
+        keyboard controls
+        :param event:
+        :return:
+        """
         self.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
         if self.is_good(): return
         lezard = event.key()
@@ -121,6 +130,10 @@ class Taquin(QWidget):
             self.keyboard.display_grid(self.liste_cpy)
 
     def get_zero_index(self):
+        """
+        get the index of the empty cell
+        :return:
+        """
         return self.liste_cpy.index(0)
     
     
