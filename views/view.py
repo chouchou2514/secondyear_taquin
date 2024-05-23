@@ -7,15 +7,15 @@ from models.image import ImBtn
 
 class TaquinKey(QPushButton): #class for create the buttons
     def __init__(self, text: str = '', img: str = ''): #instantiation
-        super().__init__(text)
+        super().__init__(text) #inheritance
         self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        pixmap = QPixmap(img)
+        pixmap = QPixmap(img) #image
         self.label = QLabel()
         self.lay = QVBoxLayout()
-        self.label.setPixmap(pixmap)
-        self.lay.addWidget(self.label)
-        self.lay.setContentsMargins(0,0,0,0)
-        self.setLayout(self.lay)
+        self.label.setPixmap(pixmap) #put the image on the label
+        self.lay.addWidget(self.label) #put the label on the layout
+        self.lay.setContentsMargins(0,0,0,0) #margins
+        self.setLayout(self.lay) #define the layout
         self.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
 
 
@@ -39,12 +39,17 @@ class TaquinGrid(QWidget): #class for the grid of the game, place the buttons
         # self.layout_grid.addWidget(TaquinKey("13"), 3, 0, 1, 1)
         # self.layout_grid.addWidget(TaquinKey("14"), 3, 1, 1, 1)
         # self.layout_grid.addWidget(TaquinKey("15"), 3, 2, 1, 1)
-        ImBtn.couper_image("img/antoine.jpg")
-        self.layout_grid = QGridLayout()
-        self.setLayout(self.layout_grid) 
+        ImBtn.couper_image("img/antoine.jpg") #cut the image
+        self.layout_grid = QGridLayout() #create the grid as the layout of the game
+        self.setLayout(self.layout_grid) #set the layout
 
 
     def display_grid(self, list):
+        '''
+        display the grid
+        :param list:
+        :return:
+        '''
         for i in reversed(range(self.layout_grid.count())): 
             self.layout_grid.itemAt(i).widget().setParent(None) # clear tout les widget, on reppart d'une nouvelle grille # clear all the widgets within the layout
 
