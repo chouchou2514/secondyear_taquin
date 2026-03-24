@@ -1,4 +1,4 @@
-# 🧩 Projet Taquin - ISEN Caen (LBC Edition)
+# 🧩 Projet Taquin - ISEN Caen
 
 Ce dépôt contient le projet de **Jeu du Taquin** réalisé en deuxième année. L'objectif était de créer un puzzle coulissant interactif avec une interface graphique Qt, en respectant une architecture propre et modulaire.
 
